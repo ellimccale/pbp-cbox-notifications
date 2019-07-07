@@ -1,0 +1,49 @@
+.cbox-notifications-button {
+    background: none;
+    background-color: #006cb7;
+    border: 0;
+    border-radius: 50%;
+    bottom: 25px;
+    color: #fff;
+    cursor: pointer;
+    font-size: 18px;
+    height: 50px;
+    position: fixed;
+    right: 25px;
+    width: 50px;
+    z-index: 99;
+    -moz-appearance: none;
+    -webkit-appearance: none;
+}
+    
+.cbox-notifications-button:hover,
+.cbox-notifications-button:active {
+    background: none;
+    background-color: #006cb7;
+    border: 0;
+    color: #fff;
+    font-size: 18px;
+}
+
+.cbox-notifications-new {
+    background-color: #f00;
+    border: 2px solid #fff;
+    border-radius: 50%;
+    height: 8px;
+    left: 0;
+    position: absolute;
+    top: 0;
+    width: 8px;
+}
+
+.visually-hidden {
+    border: 0;
+    clip: rect(0 0 0 0);
+    height: auto;
+    margin: 0;
+    overflow: hidden;
+    padding: 0;
+    position: absolute;
+    width: 1px;
+    white-space: nowrap;
+}

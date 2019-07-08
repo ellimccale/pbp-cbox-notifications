@@ -3,7 +3,7 @@
  * Plugin URI:  http://ellitest.proboards.com
  * Author:      Elli
  * Author URI:  http://ellimccale.com/
- * Version:     0.0.1
+ * Version:     0.1.1
  */
 
 (function () {
@@ -132,6 +132,7 @@
             try {
                 cboxdata = JSON.parse(e.data);
             } catch (e) {
+                console.error(e);
                 return;
             }
 

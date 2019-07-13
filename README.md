@@ -13,7 +13,7 @@ To test that the plugin is working correctly: duplicate your browser tab, open t
 7. Once the plugin has been imported, click the "Finished" button near the bottom right of the modal dialog window
 
 **NOTE:**
-> You will be required to fill out the `cbox_url` field with your Cbox's unique URL before the plugin can be enabled.
+> You will be required to provide a unique URL before the plugin can be enabled.
 
 ## Acknowledgements
 Special thanks to [Brian Ordonez](http://support.proboards.com/user/33409), [Peter](http://support.proboards.com/user/2671), and [Chris](http://support.proboards.com/user/65613) for their help with getting me started on this plugin.

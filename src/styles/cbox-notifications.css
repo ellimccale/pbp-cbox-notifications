@@ -1,40 +1,172 @@
-.cbox-notifications-button {
+/* ==========================================================================
+   Cbox Notifications - Styles
+   ========================================================================== */
+
+/* Button
+   ========================================================================== */
+
+.cbox-notifications__button {
     background: none;
     background-color: #006cb7;
     border: 0;
     border-radius: 50%;
-    bottom: 25px;
     color: #fff;
     cursor: pointer;
-    font-size: 18px;
-    height: 50px;
+    font-size: 18px; /* px to set initial em value */
+    height: 2.813em;
+    line-height: 1 !important;
+    margin: 0;
+    padding: 0;
     position: fixed;
-    right: 25px;
-    width: 50px;
+    text-align: center;
+    width: 2.813em;
     z-index: 99;
     -moz-appearance: none;
     -webkit-appearance: none;
 }
     
-.cbox-notifications-button:hover,
-.cbox-notifications-button:active {
+.cbox-notifications__button:hover,
+.cbox-notifications__button:active {
     background: none;
     background-color: #006cb7;
     border: 0;
     color: #fff;
-    font-size: 18px;
+    font-size: 18px; /* px to set initial em value */
 }
 
-.cbox-notifications-new {
-    background-color: #f00;
-    border: 2px solid #fff;
-    border-radius: 50%;
-    height: 8px;
-    left: 0;
-    position: absolute;
-    top: 0;
-    width: 8px;
+.cbox-notifications__button i {
+    display: inline-block;
+    vertical-align: top;
 }
+
+.cbox-notifications__button img {
+    height: auto;
+    max-height: 1em;
+    max-width: 1em;
+    position: relative;
+    top: 0.063em;
+    width: auto;
+}
+
+/* Sizing */
+
+.cbox-notifications__button--small {
+    font-size: 16px;
+}
+
+.cbox-notifications__button--small:hover,
+.cbox-notifications__button--small:active {
+    font-size: 16px;
+}
+
+.cbox-notifications__button--large {
+    font-size: 20px;
+}
+
+.cbox-notifications__button--large:hover,
+.cbox-notifications__button--large:active {
+    font-size: 16px;
+}
+
+/* Show Text */
+
+.cbox-notifications__button--show-text {
+    border-radius: 4px; /* px to prevent scaling */
+    height: auto;
+    padding: 0.75em 1em;
+    width: auto;
+}
+
+.cbox-notifications__button--show-text i {
+    padding-right: 0.5em;
+}
+
+/**
+ * Positioning
+ *
+ * px is used to maintain consistency with ProBoards
+ */
+
+.cbox-notifications__button--top-left {
+	left: 25px;
+    top: 25px;
+}
+
+.cbox-notifications__button--top-right {
+	right: 25px;
+    top: 25px;
+}
+
+.cbox-notifications__button--bottom-right {
+    bottom: 25px;
+    right: 25px;
+}
+
+.cbox-notifications__button--bottom-left {
+	bottom: 25px;
+    left: 25px;
+}
+
+
+/* Notification
+   ========================================================================== */
+
+.cbox-notifications__notification {
+    background-color: #f00;
+    border: 2px solid #fff; /* px to prevent scaling */
+    border-radius: 50%;
+    height: 0.5em;
+    position: absolute;
+    width: 0.5em;
+}
+
+/* Positioning */
+
+.cbox-notifications__notification--top-left {
+	left: 0;
+    top: 0;
+}
+
+.cbox-notifications__notification--top-right {
+	right: 0;
+    top: 0;
+}
+
+.cbox-notifications__notification--bottom-right {
+    bottom: 0;
+    right: 0;
+}
+
+.cbox-notifications__notification--bottom-left {
+	bottom: 0;
+    left: 0;
+}
+
+/* Positioning with Text */
+
+.cbox-notifications__button--show-text > .cbox-notifications__notification--top-left {
+    left: -0.25em;
+    top: -0.25em;
+}
+
+.cbox-notifications__button--show-text > .cbox-notifications__notification--top-right {
+    right: -0.25em;
+    top: -0.25em;
+}
+
+.cbox-notifications__button--show-text > .cbox-notifications__notification--bottom-right {
+    bottom: -0.25em;
+    right: -0.25em;
+}
+
+.cbox-notifications__button--show-text > .cbox-notifications__notification--bottom-left {
+    bottom: -0.25em;
+    left: -0.25em;
+}
+
+
+/* ARIA Hidden Text
+   ========================================================================== */
 
 .visually-hidden {
     border: 0;

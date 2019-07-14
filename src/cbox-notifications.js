@@ -106,7 +106,7 @@
         });
 
         $cboxButton.addClass(
-            _getElementPosition(BUTTON_CLASS, settings.button_position)
+            _setElementPosition(BUTTON_CLASS, settings.button_position)
         );
 
         var buttonSize = settings.button_size;
@@ -247,7 +247,7 @@
         });
 
         $cboxNotification.addClass(
-            _getElementPosition(NOTIFICATION_CLASS, settings.notification_position)
+            _setElementPosition(NOTIFICATION_CLASS, settings.notification_position)
         );
 
         $cboxNotification.css({
@@ -259,7 +259,7 @@
 
     }
 
-    function _getElementPosition(selector, position) {
+    function _setElementPosition(selector, position) {
 
         if (position === 'top-left') {
             return selector + '--top-left';

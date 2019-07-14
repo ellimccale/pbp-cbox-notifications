@@ -48,7 +48,7 @@
     width: auto;
 }
 
-/* Sizing */
+/* Button Sizes */
 
 .cbox-notifications__button--small {
     font-size: 16px;
@@ -68,7 +68,7 @@
     font-size: 20px;
 }
 
-/* Show Text */
+/* Button with Text */
 
 .cbox-notifications__button--show-text {
     border-radius: 4px; /* px to prevent scaling */
@@ -82,18 +82,18 @@
 }
 
 /**
- * Positioning
+ * Button Positioning
  *
  * px is used to maintain consistency with ProBoards
  */
 
 .cbox-notifications__button--top-left {
-	left: 25px;
+    left: 25px;
     top: 25px;
 }
 
 .cbox-notifications__button--top-right {
-	right: 25px;
+    right: 25px;
     top: 25px;
 }
 
@@ -103,7 +103,7 @@
 }
 
 .cbox-notifications__button--bottom-left {
-	bottom: 25px;
+    bottom: 25px;
     left: 25px;
 }
 
@@ -120,15 +120,15 @@
     width: 0.5em;
 }
 
-/* Positioning */
+/* Notification Positioning */
 
 .cbox-notifications__notification--top-left {
-	left: 0;
+    left: 0;
     top: 0;
 }
 
 .cbox-notifications__notification--top-right {
-	right: 0;
+    right: 0;
     top: 0;
 }
 
@@ -138,11 +138,11 @@
 }
 
 .cbox-notifications__notification--bottom-left {
-	bottom: 0;
+    bottom: 0;
     left: 0;
 }
 
-/* Positioning with Text */
+/* Notification Positioning with Button Text */
 
 .cbox-notifications__button--show-text > .cbox-notifications__notification--top-left {
     left: -0.25em;

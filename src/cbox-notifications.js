@@ -3,25 +3,23 @@
  * Plugin URI:  http://ellitest.proboards.com
  * Author:      Elli
  * Author URI:  http://ellimccale.com/
- * Version:     0.2.0
+ * Version:     1.0.0
  */
 
-(function () {
+(function() {
 
     var PLUGIN_ID = 'cbox_notifications';
     var ELEMENT_ID = 'cbox-notifications';
     var DIALOG_ID = 'js-' + ELEMENT_ID + '-dialog';
     var BUTTON_ID = 'js-' + ELEMENT_ID + '-button';
     var BUTTON_CLASS = ELEMENT_ID + '__button';
+    var NOTIFICATION_ID = 'js-' + ELEMENT_ID + '-notification';
     var NOTIFICATION_CLASS = ELEMENT_ID + '__notification';
 
     var settings = {};
 
     var hasNewMessage = false;
     var isDialogOpen = false;
-
-    var $cboxButton;
-    var $cboxNotification;
 
     function _init() {
 
@@ -45,6 +43,7 @@
 
         _buildDialog();
         _buildButton();
+        _bindButtonEvent();
         _fetchCboxData();
         _fetchStorageData();
 
@@ -53,6 +52,7 @@
     function _buildDialog() {
 
         var isDialogDraggable = (settings.is_dialog_draggable === 'true');
+        var isDialogResizable = (settings.is_dialog_resizable === 'true');
 
         pb.window.dialog(DIALOG_ID, {
 
@@ -60,19 +60,17 @@
             draggable: isDialogDraggable,
             height: settings.dialog_height,
             modal: true,
-            resizable: false,
+            resizable: isDialogResizable,
             title: settings.dialog_title,
             width: settings.dialog_width,
 
-            open: function (e, ui) {
-                console.log('The dialog should be open.');
+            open: function(e, ui) {
                 isDialogOpen = true;
             },
 
-            close: function (e, ui) {
-                console.log('The dialog should be closed.');
+            close: function(e, ui) {
                 isDialogOpen = false;
-            }
+            },
 
         });
 
@@ -83,54 +81,55 @@
     function _buildDialogContent() {
 
         return $('<iframe>').attr({
-
             allowtransparency: 'yes',
             frameborder: '0',
-            height: '99%',
+            height: '98%',
             marginheight: '0',
             marginwidth: '0',
             scrolling: 'auto',
             src: settings.cbox_url,
             width: '100%',
-
         });
 
     }
 
     function _buildButton() {
 
-        $cboxButton = $('<button>').attr({
-            id: BUTTON_ID,
-            class: BUTTON_CLASS,
-            type: 'button',
-        });
+        var $button = $('#' + BUTTON_ID);
 
-        $cboxButton.addClass(
+        if (!$button.length) {
+
+            $button = $('<button>').attr({
+                id: BUTTON_ID,
+                class: BUTTON_CLASS,
+                type: 'button',
+            });
+
+            $('body').append($button);
+
+        }
+
+        $button.addClass(
             _setElementPosition(BUTTON_CLASS, settings.button_position)
         );
 
         var buttonSize = settings.button_size;
 
         if (buttonSize === 'button_small') {
-            $cboxButton.addClass(BUTTON_CLASS + '--small');
+            $button.addClass(BUTTON_CLASS + '--small');
         } else if (buttonSize === 'button_large') {
-            $cboxButton.addClass(BUTTON_CLASS + '--large');
+            $button.addClass(BUTTON_CLASS + '--large');
         }
 
-        $cboxButton.css({
+        $button.css({
             'background-color': '#' + settings.button_bg_color,
             'border': settings.button_border,
             'color': '#' + settings.button_text_color,
         });
 
-        $cboxButton.html(_buildButtonContent());
+        $button.html(_buildButtonContent());
 
-        $cboxButton.on('click', function () {
-            _removeNotification();
-            $('#' + DIALOG_ID).dialog('open');
-        });
-
-        $('body').append($cboxButton);
+        return $button;
 
     }
 
@@ -155,7 +154,7 @@
         }
 
         if (showButtonText) {
-            $cboxButton.addClass(BUTTON_CLASS + '--show-text');
+            $('#' + BUTTON_ID).addClass(BUTTON_CLASS + '--show-text');
             buttonContent += settings.button_text;
         }
 
@@ -163,9 +162,23 @@
 
     }
 
+    function _bindButtonEvent() {
+
+        $('#' + BUTTON_ID).on('click', function() {
+
+            _removeNotification();
+
+            localStorage.removeItem('hasNewCboxMessage');
+
+            $('#' + DIALOG_ID).dialog('open');
+
+        });
+
+    }
+
     function _fetchCboxData() {
 
-        window.addEventListener('message', function (e) {
+        window.addEventListener('message', function(e) {
 
             if (!e || !e.data) {
                 return;
@@ -187,14 +200,8 @@
             var event = cboxdata['event'];
 
             if (event === 'message' && !isDialogOpen) {
-
                 _addNotification();
-
                 localStorage.setItem('hasNewCboxMessage', 'true');
-
-                console.log('New message received from Cbox!');
-
-                console.log('Notification and localStorage item were added! The dialog should be closed.');
             }
 
         });
@@ -205,7 +212,6 @@
 
         if (localStorage.getItem('hasNewCboxMessage') === 'true') {
             _addNotification();
-            console.log('localStorage remembered to add a notification. The dialog should be closed.');
         }
 
     }
@@ -216,9 +222,9 @@
 
             hasNewMessage = true;
 
-            _buildNotification();
+            var $cboxNotification = _buildNotification();
 
-            $cboxButton.prepend($cboxNotification);
+            $('#' + BUTTON_ID).prepend($cboxNotification);
 
         }
 
@@ -230,11 +236,7 @@
 
             hasNewMessage = false;
 
-            $cboxNotification.remove();
-
-            localStorage.removeItem('hasNewCboxMessage');
-
-            console.log('Notification and localStorage item were removed! Dialog should be open.');
+            $('#' + NOTIFICATION_ID).remove();
 
         }
 
@@ -242,20 +244,23 @@
 
     function _buildNotification() {
 
-        $cboxNotification = $('<span>').attr({
+        var $notification = $('<span>').attr({
+            id: NOTIFICATION_ID,
             class: NOTIFICATION_CLASS,
         });
 
-        $cboxNotification.addClass(
+        $notification.addClass(
             _setElementPosition(NOTIFICATION_CLASS, settings.notification_position)
         );
 
-        $cboxNotification.css({
+        $notification.css({
             'background-color': '#' + settings.notification_bg_color,
             'border': settings.notification_border,
         });
 
-        $cboxNotification.html('<span class="visually-hidden">New Message</span>');
+        $notification.html('<span class="visually-hidden">New Message</span>');
+
+        return $notification;
 
     }
 

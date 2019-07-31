@@ -1,3 +1,10 @@
+### 1.0.0
+- Added option to make the dialog resizable
+- Reduced Cbox iframe height from 99% to 98% to prevent vertical scrollbars on some forums
+- Made it possible to allow custom placement of the trigger button
+- Made _buildButton and _buildNotification more "pure"
+- Moved some settings around in the plugin interface
+
 ### 0.2.0
 - Added customization options for button and notification
 - Changed `cbox_height` to `dialog_height` and moved it to dialog options

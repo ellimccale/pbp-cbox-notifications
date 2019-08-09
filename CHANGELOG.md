@@ -1,8 +1,14 @@
+### 1.0.1
+- Changed `_buildButton` to only append a CSS positioning class if the user hasn't placed the trigger button manually
+- Updated CSS positioning classes to work with the above
+- Updated try...catch argument from `e` to `err` since parent already uses `e`
+- Simplified function that appends notification
+
 ### 1.0.0
 - Added option to make the dialog resizable
 - Reduced Cbox iframe height from 99% to 98% to prevent vertical scrollbars on some forums
 - Made it possible to allow custom placement of the trigger button
-- Made _buildButton and _buildNotification more "pure"
+- Made `_buildButton` and `_buildNotification` more "pure"
 - Moved some settings around in the plugin interface
 
 ### 0.2.0

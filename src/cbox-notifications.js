@@ -3,7 +3,7 @@
  * Plugin URI:  http://ellitest.proboards.com
  * Author:      Elli
  * Author URI:  http://ellimccale.com/
- * Version:     1.0.0
+ * Version:     1.0.1
  */
 
 (function() {
@@ -107,11 +107,11 @@
 
             $('body').append($button);
 
-        }
+            $button.addClass(
+                _setElementPosition(BUTTON_CLASS, settings.button_position)
+            );
 
-        $button.addClass(
-            _setElementPosition(BUTTON_CLASS, settings.button_position)
-        );
+        }
 
         var buttonSize = settings.button_size;
 
@@ -142,7 +142,7 @@
         if (showButtonIcon) {
 
             var buttonIcon = '';
-            
+
             if (settings.image_or_font === 'image') {
                 buttonIcon += '<i aria-hidden="true"><img src="' + settings.button_icon_image + '" alt="" /></i>';
             } else if (settings.image_or_font === 'icon_font') {
@@ -192,8 +192,8 @@
 
             try {
                 cboxdata = JSON.parse(e.data);
-            } catch (e) {
-                console.error(e);
+            } catch (err) {
+                console.error(err);
                 return;
             }
 
@@ -222,9 +222,7 @@
 
             hasNewMessage = true;
 
-            var $cboxNotification = _buildNotification();
-
-            $('#' + BUTTON_ID).prepend($cboxNotification);
+            $('#' + BUTTON_ID).prepend(_buildNotification());
 
         }
 

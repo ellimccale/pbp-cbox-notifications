@@ -5,7 +5,7 @@
 /* Button
    ========================================================================== */
 
-.cbox-notifications__button {
+   .cbox-notifications__button {
     background: none;
     background-color: #006cb7;
     border: 0;
@@ -17,7 +17,7 @@
     line-height: 1 !important;
     margin: 0;
     padding: 0;
-    position: fixed;
+    position: relative;
     text-align: center;
     width: 2.813em;
     z-index: 99;
@@ -89,21 +89,25 @@
 
 .cbox-notifications__button--top-left {
     left: 25px;
+    position: fixed;
     top: 25px;
 }
 
 .cbox-notifications__button--top-right {
     right: 25px;
+    position: fixed;
     top: 25px;
 }
 
 .cbox-notifications__button--bottom-right {
     bottom: 25px;
+    position: fixed;
     right: 25px;
 }
 
 .cbox-notifications__button--bottom-left {
     bottom: 25px;
+    position: fixed;
     left: 25px;
 }
 

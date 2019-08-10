@@ -1,4 +1,4 @@
-# Cbox Notifications 1.0.0
+# Cbox Notifications 1.0.1
 A plugin built with the free forum software [ProBoards](https://proboards.com/) that hides a Cbox behind a dialog, and shows a notification when a new message has been posted.
 
 To test that the notification is working correctly: duplicate your browser tab, open the dialog from one tab, and send a message. You should see the notification appear over the trigger button in the other tab.
